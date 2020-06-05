@@ -2,6 +2,7 @@ package com.jyn.aspectjx.permission.aspect;
 
 import android.content.Context;
 
+import com.apkfuns.logutils.LogUtils;
 import com.jyn.aspectjx.permission.annotation.PermissionCheck;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -15,18 +16,23 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class PermissionCheckAspectJ {
-    private static final String TAG = "PermissionCheck";
 
-    Context context = null;
+    private Context context = null;
 
-    @Pointcut("execution(@com.jyn.aspectjx.permission.annotation.PermissionCheck * *(..)) && @annotation(ann)")
-    public void checkPermission(PermissionCheck ann) {
+    private static final String PERMISSION_CHECK = "execution(@com.jyn.aspectjx.permission.annotation.PermissionCheck * *(..))";
+
+    @Pointcut(PERMISSION_CHECK + " && @annotation(args)")
+    public void checkPermission(PermissionCheck args) {
 
     }
 
-    @Around("checkPermission(ann)")
-    public Object check(ProceedingJoinPoint joinPoint, PermissionCheck ann) throws Throwable {
-        if (ann != null) {
+    @Around("checkPermission(args)")
+    public Object check(ProceedingJoinPoint joinPoint, PermissionCheck args) throws Throwable {
+        String[] permissions = args.permissions();
+        int requestCode = args.requestCode();
+        LogUtils.tag("main").i(permissions);
+        LogUtils.tag("main").i(requestCode);
+        if (joinPoint != null) {
             context = (Context) joinPoint.getThis();
         }
         return joinPoint.proceed();

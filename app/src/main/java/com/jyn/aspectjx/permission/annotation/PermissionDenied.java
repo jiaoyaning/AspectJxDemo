@@ -6,13 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by jiaoyaning on 2020/4/30.
- * 申请权限
+ * Created by jiaoyaning on 2020/6/5.
+ * 权限拒绝
  */
 @Target(value = ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PermissionCheck {
-    String[] permissions();
+public @interface PermissionDenied {
 
-    int requestCode() default 1000;
 }
