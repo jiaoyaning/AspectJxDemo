@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * Created by jiaoyaning on 2020/4/30.
+ * 权限申请
  */
 
 @Aspect

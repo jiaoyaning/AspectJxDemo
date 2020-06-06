@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * Created by jiaoyaning on 2020/4/30.
+ * 点击抖动
  */
 @Aspect
 public class RepeatClickAspect {
