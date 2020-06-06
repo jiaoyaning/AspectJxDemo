@@ -13,7 +13,7 @@ import org.aspectj.lang.annotation.Pointcut;
  */
 @Aspect
 public class TraceAspectJ {
-    private static final String TRACE_ONCLICK = "execution(* onClick(..))";
+    private static final String TRACE_ONCLICK = "execution(* android.view.View.OnClickListener.onClick(..))";
 
     @Pointcut(TRACE_ONCLICK)
     public void aspectOnClick() {
