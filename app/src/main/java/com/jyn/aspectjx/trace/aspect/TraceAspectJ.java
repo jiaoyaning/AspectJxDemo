@@ -1,5 +1,6 @@
 package com.jyn.aspectjx.trace.aspect;
 
+import android.app.Activity;
 import android.view.View;
 
 import com.apkfuns.logutils.LogUtils;
@@ -59,6 +60,8 @@ public class TraceAspectJ {
 //        LogUtils.tag("main").i("+++onCreate方法开始");
         if (joinPoint != null) {
             joinPoint.proceed();
+            Activity activity = (Activity) joinPoint.getThis();
+            LogUtils.tag("main").i("activity:"+activity.getLocalClassName());
         }
         LogUtils.tag("main").i("---onCreate方法结束");
     }
